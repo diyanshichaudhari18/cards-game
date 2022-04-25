@@ -1,0 +1,59 @@
+--------------------------------------------------------------------
+public void dealCard(Player p) {
+        p.hand.add(deck.dealCard());
+    }
+
+instead of this it should be like 
+
+public void dealCard(Player p){
+	p.addCard(deck.dealCard());
+}
+
+and there has to be a method in player class named 
+
+public void addCard(Card c){
+this.hand.add(c);
+}
+--------------------------------------------------------------------
+In singleton pattern there is no thread safe for Game Class
+public static Game getInstance() {
+        if (instance == null) {
+            instance = new Game();
+        }
+        return instance;
+}
+
+instead of this, if you want to achieve thread safe, then it should be
+
+public static synchroinized Game getInstance(){
+}
+--------------------------------------------------------------------
+You can implement deck from the interface suite.
+
+public class Deck implements Suite{
+
+So the next code will be
+
+for(int i = 1 ; i <= 13 ; i++){
+            deck.add(new Card(i,CLUBS));
+            deck.add(new Card(i,DIAMONDS));
+            deck.add(new Card(i,HEARTS));
+            deck.add(new Card(i,SPADE));
+        }
+
+instead of
+
+for(int i = 1 ; i <= 13 ; i++){
+            deck.add(new Card(i,Suite.CLUBS));
+            deck.add(new Card(i,Suite.DIAMONDS));
+            deck.add(new Card(i,Suite.HEARTS));
+            deck.add(new Card(i,Suite.SPADE));
+        }
+
+.
+--------------------------------------------------------------------
+In Deck class, there is no use of delt arraylist. In future, it will need but right now it's not used.
+So you can remove that one.
+
+public ArrayList<Card> delt = new ArrayList<Card>();
+--------------------------------------------------------------------
